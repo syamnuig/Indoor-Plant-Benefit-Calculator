@@ -18,7 +18,7 @@ const plantData = {
 };
 
 const plantInputs = document.getElementById("plantInputs");
-const maxPlants = 5;
+const maxPlants = 10;
 
 function createPlantSelectors() {
   const species = Object.keys(plantData);
@@ -47,6 +47,27 @@ function fmt(v) {
   return isFinite(v) ? v.toFixed(1) : "—";
 }
 
+function getAirQualityDescription(score) {
+  if (score <= 10) return "Minimal impact — your air could benefit from more purifying plants.";
+  if (score <= 25) return "Moderate improvement — your plants are helping clean the air.";
+  if (score <= 40) return "Strong purification — your indoor air is noticeably fresher.";
+  return "Exceptional — your plant setup is a natural air filtration system.";
+}
+
+function getSleepSupportDescription(score) {
+  if (score <= 10) return "Low support — consider adding calming plants to improve sleep.";
+  if (score <= 25) return "Moderate support — your plants contribute to a restful environment.";
+  if (score <= 40) return "Strong support — your space promotes deep relaxation.";
+  return "Exceptional — your plant setup is a sleep sanctuary.";
+}
+
+function getWellnessBadge(score) {
+  if (score <= 10) return { badge: "🪴 Starter Sprout", text: "Minimal impact — consider adding more greenery." };
+  if (score <= 25) return { badge: "🌿 Green Guardian", text: "Moderate benefit — your plants are helping!" };
+  if (score <= 40) return { badge: "🌱 Zen Zone", text: "Strong impact — your space is thriving." };
+  return { badge: "🌳 Air Hero", text: "Exceptional — your home is a botanical sanctuary!" };
+ }
+
 function calculate() {
   let totalOxygen = 0, totalCarbon = 0, totalSavings = 0;
 
@@ -60,13 +81,7 @@ function calculate() {
       totalSavings += data.savings * count;
     }
   }
-  function getWellnessBadge(score) {
-	if (score <= 10) return { badge: "🪴 Starter Sprout", text: "Minimal impact — consider adding more greenery." };
-	if (score <= 25) return { badge: "🌿 Green Guardian", text: "Moderate benefit — your plants are helping!" };
-	if (score <= 40) return { badge: "🌱 Zen Zone", text: "Strong impact — your space is thriving." };
-	return { badge: "🌳 Air Hero", text: "Exceptional — your home is a botanical sanctuary!" };
-  }
-  
+    
   function getNextBadgeGap(score) {
 	if (score < 11) return 11 - score;
 	if (score < 26) return 26 - score;
@@ -93,6 +108,11 @@ function calculate() {
   
   const wellness = getWellnessBadge(totalWellbeing);
   const nextGap = getNextBadgeGap(totalWellbeing);
+  const airGap = getNextBadgeGap(totalAirQuality);
+  const sleepGap = getNextBadgeGap(totalSleepSupport);
+
+  document.getElementById("airQualityDescription").textContent = getAirQualityDescription(totalAirQuality);
+  document.getElementById("sleepSupportDescription").textContent = getSleepSupportDescription(totalSleepSupport);
   document.getElementById("outNextBadge").textContent = nextGap > 0 ? `${nextGap} more points` : "Max badge achieved";
   document.getElementById("wellnessDescription").textContent = `${wellness.badge} ${wellness.text}`;
   document.getElementById("outWellbeing").textContent = fmt(totalWellbeing);
@@ -101,6 +121,8 @@ function calculate() {
   document.getElementById("outSavings").textContent = "€" + fmt(totalSavings);
   document.getElementById("outAirQuality").textContent = fmt(totalAirQuality);
   document.getElementById("outSleepSupport").textContent = fmt(totalSleepSupport);
+  document.getElementById("outAirNext").textContent = airGap > 0 ? `${airGap} more points` : "Max badge achieved";
+  document.getElementById("outSleepNext").textContent = sleepGap > 0 ? `${sleepGap} more points` : "Max badge achieved";
   
   drawChart(totalOxygen, totalCarbon, totalSavings);
 }
