@@ -15,6 +15,7 @@ Estimate the environmental and wellness impact of your indoor plants — from ox
   - 😴 Sleep Support index  
 - Dynamic descriptions and badge system for each score  
 - Progress indicators showing points needed to reach the next badge tier
+- V2 mobile version supports multiple screen sizes
 
 ## 🪴 Supported Plant Species
 
