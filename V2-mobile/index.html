@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Indoor Plant Benefits Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Indoor Plant Benefits Calculator</h1>
+    <p>Calculate the benefits of your indoor plants.</p>
+  </header>
+
+  <main class="container">
+    <!-- Inputs -->
+    <section class="card">
+      <h2>Plant Selection</h2>
+      <div id="plantInputs"></div><br/>
+      <button class="primary" id="calculateBtn">Calculate</button>
+      <button id="resetBtn">Reset</button>
+    </section>
+
+    <!-- Outputs -->
+    <section class="card" id="summaryCard">
+      <h2>Results</h2>
+      <div class="grid-2">
+        <div class="stat"><div class="label">Oxygen produced/day</div><div id="outOxygen" class="value">—</div></div>
+        <div class="stat"><div class="label">Carbon trapped/year</div><div id="outCarbon" class="value">—</div></div>
+        <div class="stat"><div class="label">Energy savings/year</div><div id="outSavings" class="value">—</div></div>
+		<div class="stat"><div class="label">Wellbeing score</div><div id="outWellbeing" class="value">—</div></div>
+		<div class="stat"><div class="label">Air Quality Score</div><div id="outAirQuality" class="value">—</div></div>
+		<div class="stat"><div class="label">Sleep Support Index</div><div id="outSleepSupport" class="value">—</div></div>
+      </div>
+
+      <div class="divider"></div>
+	  <h3>🧘 Wellbeing Impact</h3>
+	  <div class="stat"><div class="description" id="wellnessDescription">Your plant-powered wellbeing summary will appear here.</div></div>
+	  <div class="stat"><div class="label">Points to next badge</div><div id="outNextBadge" class="value">—</div></div>
+	  
+	  <div class="divider"></div>
+	  <h3>🫧 Air Quality Impact</h3>
+	  <div class="stat"><div class="description" id="airQualityDescription">Your air quality summary will appear here.</div></div>
+	  <div class="stat"><div class="label">Points to next Air Quality badge</div><div id="outAirNext" class="value">—</div></div>
+
+	  <div class="divider"></div>
+	  <h3>🌙 Sleep Support Impact</h3>
+	  <div class="stat"><div class="description" id="sleepSupportDescription">Your sleep support summary will appear here.</div></div>
+	  <div class="stat"><div class="label">Points to next Sleep Support badge</div><div id="outSleepNext" class="value">—</div></div>
+
+    </section>
+  </main>
+
+  <footer>
+    <span>Open Source | <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License V3</a> | Indoor Plant Benefit Calculator | Developed with AI, prompted and tested by <a href="https://github.com/syamnuig" target="_blank">SyamNair </a></span>
+    <br/><span>Tip: Indoor plants improve air quality, reduce stress, and help regulate temperature.</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
